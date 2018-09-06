@@ -1,35 +1,21 @@
 <template>
   <div id="app">
-    <div class="ele-header"></div>
-    <router-view class="ele-page"></router-view>
+    <TopToolbar></TopToolbar>
+    <FirstContent></FirstContent>
+    <FirstFooter></FirstFooter>
   </div>
 </template>
 
 <script>
+  import TopToolbar from '@/components/firstPage/topToolbar'
+  import FirstFooter from '@/components/firstPage/firstFooter'
+  import FirstContent from '@/components/firstPage/firstContent'
   export default {
-    name: 'zjhcsoft-cli'
+    name: 'home',
+    components: {
+      TopToolbar,
+      FirstFooter,
+      FirstContent
+    }
   }
 </script>
-<style lang="scss">
-@import '@/styles/base.scss';
-ul,li{
-  list-style: none;
-}
-.ele-header{
-  position: absolute;
-  width: 100%;
-  z-index: 10;
-  height: 20px;
-  background-color: #515a6e;
-  text-align: center;
-  -webkit-app-region: drag;
-  font-size: 14px;
-  line-height: 20px;
-}
-.ele-page{
-  position: absolute;
-  top: 20px;
-  bottom: 0;
-  width: 100%;
-}
-</style>
