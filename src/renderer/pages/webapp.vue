@@ -1,72 +1,25 @@
 <template>
   <div>
     <div class="webapp-page">
-      <Divider>新建 WebApp 工程</Divider>
-      <Form ref="formValidate" :model="formValidate" :rules="ruleValidate" :label-width="120">
-        <FormItem label="项目名称：" prop="name">
-            <Input v-model="formValidate.name" placeholder="请输入项目名，必须为英文且不带空格"></Input>
-        </FormItem>
-        <FormItem label="版本号：" prop="version">
-            <Input v-model="formValidate.version" placeholder="请输入版本号，例如：1.0.0"></Input>
-        </FormItem>
-        <FormItem label="项目介绍：" prop="desc">
-            <Input v-model="formValidate.desc" placeholder="请输入项目介绍"></Input>
-        </FormItem>
-        <FormItem label="Vue 版本号：" prop="vueVersion">
-            <RadioGroup v-model="formValidate.vueVersion">
-                <Radio label="2.5.17"></Radio>
-            </RadioGroup>
-        </FormItem>
-        <FormItem label="CSS 预处理：" prop="css">
-            <CheckboxGroup v-model="formValidate.css">
-                <Checkbox label="Less"></Checkbox>
-                <Checkbox label="Sass"></Checkbox>
-            </CheckboxGroup>
-        </FormItem>
-        <FormItem prop="ajax">
-            <div slot="label">
-                <span>Ajax</span>
-                <Tooltip content="基于 axios" class="bg-primary">
-                    <Icon type="ios-help" size="14"></Icon>
-                </Tooltip>
-                <span>：</span>
-            </div>
-            <i-Switch v-model="formValidate.ajax">
-                <Icon type="md-checkmark" slot="open"/>
-                <Icon type="md-close" slot="close"/>
-            </i-Switch>
-        </FormItem>
-        <FormItem label="Eslint：" prop="eslint">
-            <i-Switch v-model="formValidate.eslint">
-                <Icon type="md-checkmark" slot="open"/>
-                <Icon type="md-close" slot="close"/>
-            </i-Switch>
-        </FormItem prop="store">
-        <FormItem label="状态管理：">
-            <CheckboxGroup v-model="formValidate.store">
-                <Checkbox label="Vuex"></Checkbox>
-                <Checkbox label="Bus.js"></Checkbox>
-            </CheckboxGroup>
-        </FormItem prop="name">
-        <FormItem label="图表：" prop="chart">
-            <CheckboxGroup v-model="formValidate.chart">
-                <Checkbox label="Echarts"></Checkbox>
-            </CheckboxGroup>
-        </FormItem>
-      </Form>
-      <div class="webapp-footer">
-        <Button type="primary" style="margin-right: 20px;" @click="handleSubmit('formValidate')">创建工程</Button>
-        <Button style="width: 80px;">重置</Button>
-      </div>
+      <component :is="step.step" :formValidate="formValidate" :log="log"></component>
     </div>
   </div>
 </template>
 
 <script>
+import Add from '@/pages/webapp/add'
+import Log from '@/pages/webapp/log'
+import Doc from '@/pages/webapp/doc'
 export default {
   name: 'webapp',
+  components: {
+    Add,
+    Log,
+    Doc
+  },
   data () {
     return {
+      step: this.$store.state.step,
       formValidate: {
         name: '',
         version: '1.0.0',
@@ -78,25 +31,29 @@ export default {
         chart: [],
         store: []
       },
-      saveDirectory: undefined,
-      ruleValidate: {}
+      log: {
+        package: 1,
+        babel: 1,
+        webpackBase: 1,
+        webpackDev: 1,
+        webpackProd: 1,
+        router: 1,
+        app: 1,
+        template: 1,
+        indexHtml: 1,
+        indexVue: 1,
+        main: 1,
+        config: 1,
+        util: 1,
+        bus: 1,
+        eslintRc: 1,
+        eslintIgnore: 1,
+        gitignore: 1
+      }
     }
   },
-  methods: {
-    handleSubmit (name) {
-      console.log(name)
-      this.$refs[name].validate(valid => {
-        if (valid) {
-          let remote = this.$electron.remote
-          let dialog = remote.dialog
-          let win = remote.BrowserWindow.getAllWindows()[0]
-          this.saveDirectory = dialog.showOpenDialog(win, {
-            properties: ['openDirectory', 'createDirectory']
-          })
-        }
-      })
-    },
-    handleReset () {}
+  destroyed () {
+    this.$store.dispatch('UPDATE_STEP', 'Add')
   }
 }
 </script>
@@ -104,13 +61,5 @@ export default {
 <style scoped lang="scss">
 .webapp-page {
   padding: 0 200px;
-}
-.bg-primary {
-  background-color: #2d8cf0;
-  border-radius: 50%;
-  color: #fff;
-}
-.webapp-footer {
-  text-align: center;
 }
 </style>

@@ -9,9 +9,7 @@ const mutations = {
 }
 
 const actions = {
-  someAsyncTask ({
-    commit
-  }) {
+  UPDATE_TITLE ({ commit }) {
     commit('UPDATE_TITLE')
   }
 }

@@ -3,6 +3,7 @@ import VueElectron from 'vue-electron'
 import axios from 'axios'
 import iView from 'iview'
 import 'iview/dist/styles/iview.css'
+import '@/styles/common.scss'
 
 import App from './App'
 import router from './router'

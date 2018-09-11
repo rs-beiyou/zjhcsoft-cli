@@ -26,10 +26,10 @@ export default new Router({
       }
     },
     {
-      path: '/resource',
-      name: 'resource',
+      path: '/standard',
+      name: 'standard',
       component: resolve => {
-        require(['@/pages/resource'], resolve)
+        require(['@/pages/standard'], resolve)
       }
     },
     {
