@@ -1,6 +1,6 @@
 <template>
   <div>
-    <Divider>新建 WebApp 工程</Divider>
+    <Divider>新建 Vue Spa 工程</Divider>
     <Form ref="formValidate" :model="formValidate" :rules="ruleValidate" :label-width="120">
       <FormItem label="项目名称：" prop="name">
           <Input v-model="formValidate.name" placeholder="请输入项目名，必须为英文且不带空格"></Input>

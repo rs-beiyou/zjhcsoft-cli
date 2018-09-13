@@ -17,8 +17,8 @@
                             脚手架
                         </template>
                         <MenuGroup title="前端">
-                            <MenuItem name="2-1" @click.native="load('webapp')">Web App</MenuItem>
-                            <MenuItem name="2-2" @click.native="load('cordova')">Cordova Project</MenuItem>
+                            <MenuItem name="2-1" @click.native="load('webapp')">Vue Spa</MenuItem>
+                            <MenuItem name="2-2" @click.native="load('cordova')">Hybird App</MenuItem>
                         </MenuGroup>
                     </Submenu>
                     <MenuItem name="3" @click.native="load('standard')">

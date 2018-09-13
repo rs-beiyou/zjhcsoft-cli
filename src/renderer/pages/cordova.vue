@@ -1,7 +1,7 @@
 <template>
   <div>
     <div class="cordova-page">
-      <Divider>新建 Cordova-Vue 工程</Divider>
+      <Divider>新建 Hybird App 工程</Divider>
       <Form ref="formValidate" :label-width="120">
         <FormItem label="项目名称：">
             <Input v-model="formValidate.name" placeholder="请输入项目名，必须为英文且不带空格"></Input>
