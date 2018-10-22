@@ -7,7 +7,7 @@
 </template>
 
 <script>
-  import web from '@/assets/zjhcsoft-web.jpeg'
+  import web from '@/assets/zjhcsoft-web.png'
   export default {
     name: 'index',
     data () {

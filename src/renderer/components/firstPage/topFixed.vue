@@ -59,7 +59,6 @@ export default {
   width: 100%;
   position: fixed;
   z-index: $landing-zindex;
-  -webkit-app-region: drag;
   box-shadow: 0 0 4px rgba(0,0,0,.14), 0 4px 8px rgba(0,0,0,.28);
   user-select: none;
 }
@@ -70,6 +69,7 @@ export default {
   text-align: center;
   font-size: 14px;
   line-height: $landing-top-toolbar-height;
+  -webkit-app-region: drag;
 }
 .layout-logo{
   position: relative;
